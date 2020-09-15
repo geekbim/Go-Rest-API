@@ -9,15 +9,15 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func Server() {
+func Server() *mux.Router {
 	router := mux.NewRouter()
 	router.HandleFunc("/", handleHome).Methods("GET")
+	return router
 }
 
 func main() {
 	router := Server()
 	log.Fatal(http.ListenAndServe(":8080", router))
-
 }
 
 func handleHome(writer http.ResponseWriter, request *http.Request) {
